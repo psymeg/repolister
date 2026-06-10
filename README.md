@@ -4,6 +4,9 @@ A RAG pipeline for interrogating GitHub repositories. Clone a repo, chunk it at 
 
 Built on top of the Ragtime document pipeline — shares the same PostgreSQL database, embedding model, and Ollama LLM.
 
+<img width="1043" height="962" alt="Screenshot_20260610_224519" src="https://github.com/user-attachments/assets/270b8a96-2211-4c91-8604-9a1b23fe3ea0" />
+
+
 ## What it does
 
 Repolister loads an R (or Rmd) repository into a bronze/silver/gold pipeline:
