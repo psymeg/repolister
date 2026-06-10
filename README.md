@@ -49,8 +49,6 @@ db_username = ragtime_db_user
 db_password = your_password
 ```
 
-Or export environment variables instead — see [Configuration](#configuration).
-
 **3. Pull the LLM**
 
 ```bash
