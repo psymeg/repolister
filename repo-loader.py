@@ -10,11 +10,11 @@ config = configparser.ConfigParser()
 config.read('database_config.ini')
 
 DB_CONFIG = {
-    "host":     config['database']['db_host'],
-    "port":     int(config['database']['db_port']),
-    "user":     config['database']['db_username'],
-    "password": config['database']['db_password'],
-    "dbname":   config['database']['db_name'],
+    "host":     os.environ["DB_HOST"],
+    "port":     int(os.environ["DB_PORT"]),
+    "user":     os.environ["DB_USER"],
+    "password": os.environ["DB_PASSWORD"],
+    "dbname":   os.environ["DB_NAME"],
 }
 
 SUPPORTED_EXTENSIONS = {'.r', '.rmd'}

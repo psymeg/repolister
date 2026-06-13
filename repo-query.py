@@ -1,7 +1,7 @@
 import configparser
 import io
 import sys
-
+import os
 import psycopg2
 import torch
 from ollama import Client as OllamaClient
@@ -11,11 +11,11 @@ config = configparser.ConfigParser()
 config.read('database_config.ini')
 
 DB_CONFIG = {
-    "host":     config['database']['db_host'],
-    "port":     int(config['database']['db_port']),
-    "user":     config['database']['db_username'],
-    "password": config['database']['db_password'],
-    "dbname":   config['database']['db_name'],
+    "host":     os.environ["DB_HOST"],
+    "port":     int(os.environ["DB_PORT"]),
+    "user":     os.environ["DB_USER"],
+    "password": os.environ["DB_PASSWORD"],
+    "dbname":   os.environ["DB_NAME"],
 }
 
 EMBEDDING_MODEL = "intfloat/multilingual-e5-large"
@@ -84,7 +84,8 @@ def main():
 
     print(f"Loading {EMBEDDING_MODEL} on {DEVICE}...")
     model  = SentenceTransformer(EMBEDDING_MODEL, device=DEVICE)
-    ollama = OllamaClient()
+#    ollama = OllamaClient(host="http://host.docker.internal:11434")
+    ollama = OllamaClient(host=os.environ.get("OLLAMA_HOST", "http://localhost:11434"))
     conn   = psycopg2.connect(**DB_CONFIG)
 
     print(f"  ✓ Ready — querying {repo_url}\n")
